@@ -9,7 +9,12 @@ func main() {
 
 	args := os.Args
 
-	if len(args) < 2 || len(args) > 4 {
+	if len(args) == 1 {
+
+		db := SetupDatabase()
+		StartServer(db)
+
+	} else if len(args) < 2 || len(args) > 4 {
 		
 		printUsage(args[0])
 
@@ -37,9 +42,7 @@ func main() {
 
 		case "show":
 			fmt.Println(ShowLinks(db))
-
-		case "serve":
-			StartServer(db)
+			
 
 		default: 
 			printUsage(args[0])
